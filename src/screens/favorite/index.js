@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
-import {View, ScrollView, RefreshControl} from 'react-native';
+import {View, ScrollView, RefreshControl, Text} from 'react-native';
 import Wrapper from '../../components/wrapper/index';
 import LikedCats from '../../components/LikedCard/index';
-import {readData} from '../../utilities/getCatData';
-import {queryAllCatList} from '../../database/database';
 import {retrieveData} from '../../database/schema';
 
 const wait = timeout => {
@@ -41,11 +39,24 @@ const Index = () => {
               flexWrap: 'wrap',
               width: '100%',
             }}>
-            {savedCats &&
+            {savedCats === "" ? (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text style={{color: 'red'}}>
+                  You don't have any favorite cat yet.
+                </Text>
+              </View>
+            ) : (
+              savedCats &&
               savedCats.map(item => {
                 console.log(item);
                 return <LikedCats key={Math.random()} values={item} />;
-              })}
+              })
+            )}
           </View>
         </ScrollView>
       </View>

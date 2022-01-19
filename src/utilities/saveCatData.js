@@ -3,8 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const STORAGE_KEY = 'catDataStore';
 
 export const saveData = async data => {
-  //   const [getStoreValue, setStoreValue] = useState(null);
-
+  
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     alert('Data successfully saved');

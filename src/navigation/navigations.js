@@ -22,10 +22,14 @@ const Navigations = () => {
             return (
               <View style={{alignItems: 'center'}}>
                 <Image
+                  style={{
+                    width: 27,
+                    height: 24,
+                  }}
                   source={
                     focused
                       ? require('../assets/cat.png')
-                      : require('../assets/heart.png')
+                      : require('../assets/cat1.png')
                   }
                 />
                 <Text style={{color: primaryColor, marginTop: 7}}>
@@ -37,10 +41,14 @@ const Navigations = () => {
             return (
               <View style={{alignItems: 'center'}}>
                 <Image
+                  style={{
+                    width: 27,
+                    height: 24,
+                  }}
                   source={
                     focused
-                      ? require('../assets/cat.png')
-                      : require('../assets/heart.png')
+                      ? require('../assets/heart.png')
+                      : require('../assets/heart1.png')
                   }
                 />
                 <Text style={{color: primaryColor, marginTop: 7}}>

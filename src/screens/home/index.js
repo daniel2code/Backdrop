@@ -21,7 +21,7 @@ const Index = () => {
         </View>
       ) : (
         <View style={{marginTop: 5, paddingBottom: 15}}>
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <ScrollView contentContainerStyle={{flexGrow: 1}}>
             {data.map((item, idx) => {
               return <ListCard key={idx} values={item} />;
             })}

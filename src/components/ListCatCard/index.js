@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
   View,
@@ -10,15 +10,12 @@ import {
 } from 'react-native';
 import {nanoid} from 'nanoid/non-secure';
 import {fontSizes, pallete} from '../../themes/themes';
-import {saveData} from '../../utilities/saveCatData';
-import { insertNewCatData } from "../../database/database"
 import { addCatToDataBase } from "../../database/schema"
 
 const {primaryColor} = pallete;
 const {normal} = fontSizes;
 
 const Index = ({values}) => {
-  const [newData, setNewData] = useState(null);
 
   const ID = nanoid();
 
@@ -26,33 +23,6 @@ const Index = ({values}) => {
     id: ID,
     name: values?.name,
     uri: values?.image?.url,
-  };
-
-  const addCatsData = () => {
-    // if (newData !== null) {
-    setNewData(prevState => {
-      const ID = nanoid();
-
-      const newCatObject = {
-        [ID]: {
-          id: ID,
-          name: values?.name,
-          uri: values?.image?.url,
-        },
-      };
-      // const newState = {
-      //   ...prevState,
-      //   ...newCatObject,
-      //   // catsData: {
-      //   //   ...prevState.catsData,
-      //   //   ...newCatObject,
-      //   // },
-      // };
-      // console.log(...newState)
-      // this.saveTodos(newState.todos); // add this
-      return {...prevState, newCatObject};
-    });
-    // }
   };
 
   return (

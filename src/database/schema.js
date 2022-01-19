@@ -11,11 +11,6 @@ const CatSchema = {
   primaryKey: 'id',
 };
 
-// const realm = await Realm.open({
-//   path: 'myrealm',
-//   schema: [CatSchema],
-// });
-
 const realm = new Realm({schema: [CatSchema], path: 'myrealm'});
 
 export const addCatToDataBase = data => {

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {nanoid} from 'nanoid/non-secure';
 import {fontSizes, pallete} from '../../themes/themes';
-import { addCatToDataBase } from "../../database/schema"
+import {addCatToDataBase} from '../../database/schema';
 
 const {primaryColor} = pallete;
 const {normal} = fontSizes;
@@ -18,11 +18,10 @@ const {normal} = fontSizes;
 const Index = ({values}) => {
 
   const ID = nanoid();
-
   const saveCatObj = {
     id: ID,
-    name: values?.name,
-    uri: values?.image?.url,
+    name: values?.name || 'dummy',
+    uri: values?.image?.url || 'test',
   };
 
   return (

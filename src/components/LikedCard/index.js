@@ -5,17 +5,17 @@ import {fontSizes, pallete} from '../../themes/themes';
 const {primaryColor} = pallete;
 const {smallText} = fontSizes;
 
-const Index = ({ values }) => {
+const Index = ({ item }) => {
   return (
     <View style={styles.cardBox}>
       <Image
         resizeMode="cover"
         style={styles.cardImage}
-        source={{uri: values?.uri}}
+        source={{uri: item.uri}}
       />
 
       <View style={styles.cardBody}>
-        <Text style={styles.cardText}>{values?.name}</Text>
+        <Text style={styles.cardText}>{item.name}</Text>
         <Image
           resizeMode="cover"
           source={require('../../assets/redHeart.png')}

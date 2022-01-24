@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
-import {View, ScrollView, RefreshControl, Text} from 'react-native';
+import {
+  View,
+  ScrollView,
+  RefreshControl,
+  Text,
+  FlatList,
+  Image,
+} from 'react-native';
 import Wrapper from '../../components/wrapper/index';
 import LikedCats from '../../components/LikedCard/index';
 import {retrieveData} from '../../database/schema';
@@ -21,6 +28,7 @@ const Index = () => {
   useEffect(() => {
     // Fetch saved cats
     retrieveData(setSavedCats);
+    onRefresh();
   }, []);
 
   console.log(savedCats);
@@ -28,37 +36,34 @@ const Index = () => {
   return (
     <Wrapper title="Cats I Liked">
       <View style={{marginTop: 5, paddingBottom: 15}}>
-        <ScrollView
-          refreshControl={
-            <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
-          }>
+        {!savedCats ? (
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-            {savedCats === "" ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Text style={{color: 'red'}}>
-                  You don't have any favorite cat yet.
-                </Text>
-              </View>
-            ) : (
-              savedCats &&
-              savedCats.map(item => {
-                console.log(item);
-                return <LikedCats key={Math.random()} values={item} />;
-              })
-            )}
+            <Image
+              style={{height: 100, width: 100}}
+              source={require('../../assets/empty.png')}
+            />
+            <Text style={{color: 'black'}}>
+              You don't have any favorite cat yet.
+            </Text>
           </View>
-        </ScrollView>
+        ) : (
+          <FlatList
+            refreshControl={
+              <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
+            }
+            columnWrapperStyle={{justifyContent: 'space-between'}}
+            key={item => item.id}
+            numColumns={2}
+            data={savedCats && savedCats}
+            renderItem={LikedCats}
+            // keyExtractor={item => item.id}
+          />
+        )}
       </View>
     </Wrapper>
   );

@@ -1,14 +1,11 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import {nanoid} from 'nanoid/non-secure';
 
-const STORAGE_KEY = 'catDataStore';
+const ID = nanoid();
 
-export const saveData = async data => {
-  
-  try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    alert('Data successfully saved');
-  } catch (e) {
-    alert('Failed to save the data to the storage');
-    console.log(e);
-  }
+export const saveCatObj = values => {
+  return {
+    id: ID,
+    name: values?.name || "dummy",
+    uri: values?.image?.url || "test",
+  };
 };
